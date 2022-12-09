@@ -5,10 +5,11 @@ import styled from "styled-components"
 import load from "../assets/Loading.gif"
 import { Link } from "react-router-dom"
 
-export default function Sessoes(){
-    const { filmeId } = useParams()
+export default function Sessoes(){   
     const [capa, setCapa] = useState(undefined)
     const [dias, setDias] = useState(undefined)
+    const { filmeId } = useParams()
+    
     console.log(dias)
 
     useEffect(() => {
@@ -36,20 +37,19 @@ export default function Sessoes(){
                 <Dias key={dia.id}>
                     <p>{dia.weekday} - {dia.date}</p>
                         {dia.showtimes.map(hora => (
-                            <Link to={`/assentos/${dia.id}/${hora.id}`}>
-                                <button key={hora.id}>{hora.name}</button>
+                            <Link key={hora.id} to={`/assentos/${hora.id}`}>
+                                <button>{hora.name}</button>
                             </Link>
                             
                         ))}                
                 </Dias>
             ))}
-        </ContainerDias>
-        
+        </ContainerDias>        
 
         <FooterFilme>
             <FundoCapa>
                 <img src={capa.posterURL} alt={capa.title}/>
-            </FundoCapa> 
+            </FundoCapa > 
             <p>{capa.title}</p>                          
         </FooterFilme>
         </>
