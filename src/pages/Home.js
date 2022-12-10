@@ -29,7 +29,7 @@ export default function Home(){
             </TitulaPage>
             <Prateleira>
                 {capas.map(capa =>(                
-                    <Capa key={capa.title}>
+                    <Capa data-test="movie" key={capa.title}>
                         <Link to={`/Sessoes/${capa.id}`}>
                             <img src={capa.posterURL} alt={capa.title}/>
                         </Link>
@@ -47,13 +47,13 @@ const TitulaPage = styled.div`
     align-items: center;
     justify-content: center;
     p{
-    font-family: 'Roboto';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 24px;
-    line-height: 28px;
-    letter-spacing: 0.04em;
-    color: #293845;
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 24px;
+        line-height: 28px;
+        letter-spacing: 0.04em;
+        color: #293845;
 }
 `
 const Capa = styled.div`

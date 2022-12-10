@@ -32,20 +32,19 @@ export default function Sessoes(){
 
         <ContainerDias>
             {dias.map(dia => (
-                <Dias key={dia.id}>
+                <Dias data-test="movie-day" key={dia.id}>
                     <p>{dia.weekday} - {dia.date}</p>
                         {dia.showtimes.map(hora => (
-                            <Link key={hora.id} to={`/assentos/${hora.id}`}>
+                            <Link data-test="showtime" key={hora.id} to={`/assentos/${hora.id}`}>
                                 <button>{hora.name}</button>
-                            </Link>
-                            
+                            </Link>                            
                         ))}                
                 </Dias>
             ))}
         </ContainerDias>        
 
         <FooterFilme>
-            <FundoCapa>
+            <FundoCapa data-test="footer">
                 <img src={capa.posterURL} alt={capa.title}/>
             </FundoCapa > 
             <p>{capa.title}</p>                          
@@ -65,12 +64,12 @@ const FooterFilme = styled.footer`
     display: flex;
     align-items: center;
     p{
-    font-family: 'Roboto';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 26px;
-    line-height: 30px;
-    color: #293845;
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 26px;
+        line-height: 30px;
+        color: #293845;
     }
 `
 const FundoCapa = styled.div`
@@ -86,8 +85,8 @@ const FundoCapa = styled.div`
     align-items: center;
     margin: 10px;
     img{
-    width: 48px;
-    height: 72px;
+        width: 48px;
+        height: 72px;
     }
 `
 const LoadingTela = styled.div`
@@ -107,44 +106,44 @@ const TitulaPage = styled.div`
     align-items: center;
     justify-content: center;
     p{
-    font-family: 'Roboto';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 24px;
-    line-height: 28px;
-    letter-spacing: 0.04em;
-    color: #293845;
-}
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 24px;
+        line-height: 28px;
+        letter-spacing: 0.04em;
+        color: #293845;
+    }
 `
 const Dias = styled.div`
     margin: 0 20px;
     p{
-    font-family: 'Roboto';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 20px;
-    line-height: 23px;
-    letter-spacing: 0.02em;
-    color: #293845;
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 20px;
+        line-height: 23px;
+        letter-spacing: 0.02em;
+        color: #293845;
     }  
     button{
-    width: 82px;
-    height: 43px;
-    font-family: 'Roboto';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 18px;
-    line-height: 21px;
-    letter-spacing: 0.02em;
-    color: #FFFFFF;
-    background-color: #E8833A;
-    border-radius: 3px;
-    border: none;
-    margin: 30px 10px 30px 0;
-    cursor: pointer;
+        width: 82px;
+        height: 43px;
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 18px;
+        line-height: 21px;
+        letter-spacing: 0.02em;
+        color: #FFFFFF;
+        background-color: #E8833A;
+        border-radius: 3px;
+        border: none;
+        margin: 30px 10px 30px 0;
+        cursor: pointer;
     }
     button:active{
-    background-color: #f4b384;
+        background-color: #f4b384;
     }
 `
 const ContainerDias = styled.div`

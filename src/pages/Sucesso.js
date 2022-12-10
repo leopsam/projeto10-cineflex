@@ -10,7 +10,6 @@ export default function Sucesso(props){
     function retorno(){
         navigate("/")
         setSelecao([])
-
     }    
 
     return(
@@ -21,23 +20,23 @@ export default function Sucesso(props){
         </TitulaPage>
 
         <ContainerReserva>
-            <ItemReserva>
+            <ItemReserva data-test="movie-info">
                 <h1>Filme e sessão</h1>
                 <p>{filme.movie.title}</p>
                 <p>{dia.date} {filme.name}</p>
             </ItemReserva>
-            <ItemReserva>
+            <ItemReserva data-test="seats-info">
                 <h1>Ingressos</h1>
                 {selecao.map(assento => (<p key={assento}>Assento {assento}</p>))}
             </ItemReserva>
-            <ItemReserva>
+            <ItemReserva data-test="client-info">
                 <h1>Comprador</h1>
                 <p>Nome: {reservaName}</p>
                 <p>CPF: {reservaCpf}</p> 
             </ItemReserva>
         </ContainerReserva>
         <ContainerBotao>
-                <button onClick={() => retorno()}>Voltar pra Home</button>
+                <button data-test="go-home-btn" onClick={() => retorno()}>Voltar pra Home</button>
             </ContainerBotao>
         </>
     )
@@ -64,23 +63,23 @@ const ContainerReserva = styled.div`
 const ItemReserva = styled.div`
     margin-bottom: 40px;
     h1{
-    font-family: 'Roboto';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 24px;
-    line-height: 28px;       
-    letter-spacing: 0.04em;
-    color: #293845;
-    margin-bottom: 5px;
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 24px;
+        line-height: 28px;       
+        letter-spacing: 0.04em;
+        color: #293845;
+        margin-bottom: 5px;
     }
     p{
-    font-family: 'Roboto';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 22px;
-    line-height: 26px;
-    letter-spacing: 0.04em;
-    color: #293845;    
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 22px;
+        line-height: 26px;
+        letter-spacing: 0.04em;
+        color: #293845;    
     }
 `
 const ContainerBotao = styled.div`

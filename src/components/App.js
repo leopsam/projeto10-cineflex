@@ -25,7 +25,7 @@ export default function App() {
         selecao={selecao}
         setSelecao={setSelecao}
       />} />
-      <Route path="/sucesso/:reservaName/:reservaCpf/" element={<Sucesso 
+      <Route path="/sucesso/:reservaName/:reservaCpf" element={<Sucesso 
         dia={dia} 
         filme={filme}
         selecao={selecao}

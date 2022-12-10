@@ -3,14 +3,12 @@ import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import styled from "styled-components"
 import load from "../assets/Loading.gif"
-import { Link, useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 
 export default function Assentos(props){
     const { dia, setDia, filme, setFilme, selecao, setSelecao} = props
     const { diaId } = useParams()
-    const [cadeira, setCadeira] = useState(undefined)
-    
-    
+    const [cadeira, setCadeira] = useState(undefined)    
   
     const [name, setName] = useState("")
     const [ids, setIds] = useState([])
@@ -25,11 +23,8 @@ export default function Assentos(props){
     const selecionado = "#1AAE9E"
 
     const navigate = useNavigate()
-    //console.log(cadeira)
-    console.log(selecao)
-    //console.log(ids)
-    //console.log(dia)
     
+    console.log(selecao)
 
     useEffect(() => {
         const promise = axios.get(`https://mock-api.driven.com.br/api/v8/cineflex/showtimes/${diaId}/seats`)
@@ -39,13 +34,13 @@ export default function Assentos(props){
 
       function reservarFilme(e){
         e.preventDefault()
-        const reserva = { ids, name, cpf }
+        const reserva = { ids:ids, name:name, cpf:cpf }
 
         const url_post = "https://mock-api.driven.com.br/api/v8/cineflex/seats/book-many"
         const promise = axios.post(url_post, reserva)
         promise.then(res => {
             console.log(res.config.data)
-            navigate(`/sucesso/${reserva.name}/${reserva.cpf}}`)
+            navigate(`/sucesso/${reserva.name}/${reserva.cpf}`)
           })
         promise.catch(err => console.log(err.response.data))
 
@@ -115,6 +110,7 @@ export default function Assentos(props){
         {cadeira.map(cad =>(            
             <AssentosBotao 
                 key={cad.name} 
+                data-test="seat"
                 cor={botoes(cad)} 
                 corBordar={botoesBorda(cad)} 
                 onClick={(cad.isAvailable === true) ? 
@@ -146,6 +142,7 @@ export default function Assentos(props){
             <label htmlFor="name">Nome do comprador:</label>
             <input
                 id="name"
+                data-test="client-name"
                 type="text"
                 placeholder="Digite seu nome..."
                 value={name}
@@ -156,7 +153,8 @@ export default function Assentos(props){
             <label htmlFor="cpf">CPF do comprador:</label>
             <input
                 id="cpf"
-                type="text"
+                data-test="client-cpf"
+                type="number"
                 placeholder="Digite seu CPF..."
                 value={cpf}
                 onChange={e => setCpf(e.target.value)}
@@ -164,14 +162,14 @@ export default function Assentos(props){
             />
 
             <ContainerBotao>
-                <button>Reservar assento(s)</button>
+                <button data-test="book-seat-btn">Reservar assento(s)</button>
             </ContainerBotao>
         </FormContainer>
 
-        <FooterFilme>
+        <FooterFilme data-test="footer">
             <FundoCapa>
                 <img src={filme.movie.posterURL} alt={filme.movie.title}/>
-            </FundoCapa > 
+            </FundoCapa> 
             <div>
                 <p>{filme.movie.title}</p> 
                 <p>{filme.day.weekday} - {filme.name}</p> 
@@ -188,14 +186,14 @@ const TitulaPage = styled.div`
     align-items: center;
     justify-content: center;
     p{
-    font-family: 'Roboto';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 24px;
-    line-height: 28px;
-    letter-spacing: 0.04em;
-    color: #293845;
-}
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 24px;
+        line-height: 28px;
+        letter-spacing: 0.04em;
+        color: #293845;
+    }
 `
 const FooterFilme = styled.footer`
     position: fixed;
@@ -208,12 +206,12 @@ const FooterFilme = styled.footer`
     display: flex;
     align-items: center;
     p{
-    font-family: 'Roboto';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 26px;
-    line-height: 30px;
-    color: #293845;
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 26px;
+        line-height: 30px;
+        color: #293845;
     }
 `
 const FundoCapa = styled.div`
@@ -229,8 +227,8 @@ const FundoCapa = styled.div`
     align-items: center;
     margin: 10px;
     img{
-    width: 48px;
-    height: 72px;
+        width: 48px;
+        height: 72px;
     }
 `
 const LoadingTela = styled.div`
@@ -277,15 +275,14 @@ const ReferenciaBotaoUnid = styled.div`
     align-items: center;
     margin: 0 15px;
     p{  
-    font-family: 'Roboto';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 13px;
-    line-height: 15px;    
-    letter-spacing: -0.013em;
-    color: #4E5A65;
-    }
-    
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 13px;
+        line-height: 15px;    
+        letter-spacing: -0.013em;
+        color: #4E5A65;
+    }    
 `
 const FormContainer = styled.form`
     display: flex;
@@ -335,7 +332,5 @@ const ContainerBotao = styled.div`
         line-height: 21px;
         letter-spacing: 0.04em;
         color: #FFFFFF;
-    } 
-        
-    
+    }
 `
