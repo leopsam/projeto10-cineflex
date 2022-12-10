@@ -9,8 +9,6 @@ export default function Sessoes(){
     const [capa, setCapa] = useState(undefined)
     const [dias, setDias] = useState(undefined)
     const { filmeId } = useParams()
-    
-    console.log(dias)
 
     useEffect(() => {
         const promise = axios.get(`https://mock-api.driven.com.br/api/v8/cineflex/movies/${filmeId}/showtimes`)
