@@ -5,12 +5,13 @@ import styled from "styled-components"
 import load from "../assets/Loading.gif"
 import { Link, useNavigate } from "react-router-dom"
 
-export default function Assentos(){
+export default function Assentos(props){
+    const { dia, setDia, filme, setFilme, selecao, setSelecao} = props
     const { diaId } = useParams()
     const [cadeira, setCadeira] = useState(undefined)
-    const [filme, setFilme] = useState(undefined)
-    const [dia, setDia] = useState(undefined)
-    const [selecao, setSelecao] = useState([])
+    
+    
+  
     const [name, setName] = useState("")
     const [ids, setIds] = useState([])
     const [cpf, setCpf] = useState("")
@@ -25,8 +26,10 @@ export default function Assentos(){
 
     const navigate = useNavigate()
     //console.log(cadeira)
-    //console.log(selecao)
-    console.log(ids)
+    console.log(selecao)
+    //console.log(ids)
+    //console.log(dia)
+    
 
     useEffect(() => {
         const promise = axios.get(`https://mock-api.driven.com.br/api/v8/cineflex/showtimes/${diaId}/seats`)
@@ -36,19 +39,20 @@ export default function Assentos(){
 
       function reservarFilme(e){
         e.preventDefault()
-        const reserva = { ids: ids, name: name, cpf: cpf }
+        const reserva = { ids, name, cpf }
 
         const url_post = "https://mock-api.driven.com.br/api/v8/cineflex/seats/book-many"
         const promise = axios.post(url_post, reserva)
         promise.then(res => {
             console.log(res.config.data)
-            //navigate("/sucesso")
+            navigate(`/sucesso/${reserva.name}/${reserva.cpf}}`)
           })
         promise.catch(err => console.log(err.response.data))
 
         setName("")
         setIds([])
         setCpf("")
+        
       }
 
       function botoes(assento){
